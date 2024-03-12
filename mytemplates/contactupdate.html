@@ -1,0 +1,64 @@
+{% extends "navbar.html" %}
+{% block contact %}
+
+<style>
+	
+
+    form {
+        width: 300px;
+        margin: 0 auto;
+        color: #008CBA;
+    }
+   
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+    
+    input[type="text"], input[type="email"], input,textarea {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    
+    button {
+        color: blue;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        align-content: center;
+        
+    }
+</style>
+
+    
+    <div style="background-color:black;">
+        <h1 style="text-align: center; padding-top: 100px; font-style: italic; color: #008CBA" >UPDATE</h1>
+
+        {{yourdata.username}}
+        <form action="/updatedata/{{yourdata.id}}"method="post">
+            {% csrf_token %}
+        
+            <label for="name">Name:</label>
+            <input type="text"  value="{{yourdata.username}}"id="name" name="name" required>
+    
+            <label for="email">Email:</label>
+            <input type="email"  value="{{yourdata.useremail}}"id="email" name="email" required>
+    
+            <label for="message">Phone-number:</label>
+            <input id="message"  value="{{yourdata.phonenumber}}"name="number"required></input>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required>{{yourdata.message}}</textarea>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Upload Image</label>
+                <input type="file" name="imgx" class="form-control" id="exampleFormControlInput1" placeholder="Uplode your image" required>
+            </div>
+    
+            <button type="submit">UPDATE DATA</button>
+        </form>
+</form>
+</div>
+{% endblock contact %}

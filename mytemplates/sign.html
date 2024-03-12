@@ -1,0 +1,88 @@
+{% extends "navbar.html" %}
+
+{% block Signup %}
+<style>
+	
+h1{
+    margin-left:500px;
+    padding-top: 100px;
+    color: #008CBA;
+}
+    form {
+        padding-top:20px;
+        width: 300px;
+        margin: 0 auto;
+        color: #008CBA;
+    }
+   
+    label {
+        display: block;
+        margin-top: 10px;
+        padding-top:20px;
+    }
+    
+    input[type="text"], input[type="email"], input {
+        width: 100%;
+        padding: 5px;
+        margin-top: 10px;
+        
+    }
+    
+    button {
+        color: blue;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        align-content: center;
+        
+    
+    }
+    p{
+
+        color:#008CBA;
+    }
+</style>
+
+    
+    <div class="main-w3layouts wrapper" style="background-color: black">
+        <h1>Creative SignUp Form</h1>
+    
+        {% if messages %}
+    
+        {% for x in messages %}
+        <div class="alert alert-{{x.tags}}" role="alert">
+          {{x}}
+        </div>
+        {% endfor %}
+    
+        {% endif %}
+    
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form action="/signup" method="post">
+                    {% csrf_token %}
+        
+            
+            <input class="text" type="text" name="Username" placeholder="Username" required="">
+            <input class="text" type="text" name="Fullname" placeholder="Fullname" required="">
+            <input class="text email" type="email" name="email" placeholder="Email" required="">
+            <input class="text" type="password" name="password" placeholder="Password" required="">
+            <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required="">
+            <div class="wthree-text">
+                <label class="anim">
+                    <input type="checkbox" class="checkbox" required="">
+                    <span>I Agree To The Terms & Conditions</span>
+                </label>
+                <div class="clear"> </div>
+            </div>
+            <input type="submit" value="SIGNUP">
+        <p>Don't have an Account? <a href="#"> Login Now!</a></p>
+            
+
+          
+    </form>
+</div>
+    
+  
+{% endblock Signup %}

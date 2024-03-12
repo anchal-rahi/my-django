@@ -1,0 +1,62 @@
+{% extends "navbar.html" %}
+{% block contact %}
+
+<style>
+	
+
+    form {
+        width: 300px;
+        margin: 0 auto;
+        color: #008CBA;
+    }
+   
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+    
+    input[type="text"], input[type="email"], input {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    
+    button {
+        color: blue;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        align-content: center;
+        
+    }
+</style>
+
+    
+    <div style="background-color:black;">
+        <h1 style="text-align: center; padding-top: 100px; font-style: italic; color: #008CBA" > CONTACT-US</h1>
+        <form action="/save-my-data" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <label for="name">Name:</label>
+            <input t-ype="text" id="name" name="name" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="message">Phone-number:</label>
+            <input id="message" name="number"required></input>
+    
+            <label for="message">Message:</label>
+            <input id="message" name="message" rows="4" required></input>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Upload Image</label>
+                <input type="file" name="imgs" class="form-control" id="exampleFormControlInput1" placeholder="Uplode your image" required>
+            </div>
+
+            <button type="submit">Save Data</button>
+        </form>
+</form>
+</div>
+{% endblock contact %}

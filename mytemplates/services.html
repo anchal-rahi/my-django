@@ -1,0 +1,66 @@
+{% extends "navbar.html" %}
+{% block Services %}
+
+<div style="padding: 55px;padding-top: 30px; background-color:black">
+  <div style="text-align: center;">
+      <h1 style="font-size: 60px; margin-bottom: 25px;  color: #008CBA; font-style: italic;">MY ALL CONTACT RECORDS</h1>
+  </div>
+  {% if messages %}
+  {% for x in  messages %}
+  <div class="alert alert-{{x.tags}}" role="alert">
+    {{x}}
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div>
+      <div class="row">
+
+      {% if records %}
+          {% for data in records %}
+          
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card" style="margin-bottom: 23px;">
+              <div class="card-body">
+                <!-- {{data.id}} -->
+                <img src= "/media/{{data.myimage}}" alt=""  style=" height: 50px;">
+                <h1 class="card-title"> Name : <span style="font-size: 20px; font-weight: 600; color: #008CBA">{{data.username}}</span></h5>
+                <h5 class="card-title"> Email : <span style="font-size: 30px; font-weight: 600; color: #008CBA">{{data.useremail}}</span></h5>
+                <h5 class="card-title">Phonenumber : <span style="font-size: 30px; font-weight: 600; color: #008CBA">{{data.phonenumber}}</span></h5>
+                <p class="card-text">{{data.message}}.</p>
+                <div style="display: flex; justify-content: space-around;">
+                <form action="/updaterecord/{{data.id}}" method="post">
+                  {% csrf_token %}
+                    <button type="submit" class="btn btn-success">UPDATE</button>
+             </form>
+                    <form action="/deleterecord/{{data.id}}" method="Post">
+                      {% csrf_token %}
+                       <button type="submit" class="btn btn-danger">DELETE</button>
+                      </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+          {% else %}
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card" style="margin-bottom: 23px;">
+              <div class="card-body">
+                <!-- {{data.id}} -->
+                <img src= "/media/{{data.myimage}}" alt=""  style=" height: 50px;">
+                <h1 class="card-title"> No data</span></h5>
+                <p class="card-text">No data Avaliableee.</p>
+            
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+  </div>
+</div>
+
+
+
+{% endblock Services %}

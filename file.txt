@@ -1,0 +1,30 @@
+to install django commmd in commmd:
+pip install django
+
+To create django project:
+django-admin startproject projectname
+
+
+for run the files:
+python manage.py runserver
+
+to create uzsername in admin pannel:
+ python manage.py createsuper uzsername
+
+ for  create a app in django:
+ django-admin startapp appname
+
+commnad after creating table:
+python manage.py makemigrations
+
+
+to register the database name in adminpage:
+admin.site.register(database)
+
+
+admin password of django:
+name:-rahi 
+ password:-rahi@123
+
+
+
