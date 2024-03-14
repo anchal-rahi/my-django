@@ -18,7 +18,7 @@ urlpatterns = [
     path("signup",views.signup,),
     path("login",views.logins,name="login"),
     path("loginup",views.loginup),
-    path("logoutthis",views.logouthere,name="logout")
+    path("logout",views.logouthere,name="logout")
     
 
 

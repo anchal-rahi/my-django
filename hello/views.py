@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as lg
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -12,16 +13,23 @@ from hello.models import contact
 def home(request):
    
    return render(request,"home.html")
+
 def about(request):
     return render (request,"aboutus.html")
+
+@login_required
 def contactx(request):
     return render(request,"contact.html")
+
+
+@login_required
 def servicex(request):
     #orm
     mydata =contact.objects.all()
     context={"records" : mydata}
     
     return render(request,"services.html",context)
+
 def nav(request):
     return render(request,"navbar.html")
 
@@ -47,10 +55,6 @@ def savethis(request):
         THANK YOU :)
         """
 
-
-
-
-
         # mail=EmailMessage("this  email comming from django","this is me ","anchalrahi0@gmail.com",["kirtidhiman799@gmail.com"])
         # mail.send()
 
@@ -61,11 +65,9 @@ def savethis(request):
 
         return redirect("services")
 
-    return HttpResponse("data save successfully......")
 
 def deletedata(request,myid):
     # data=contact.objects.all()
-    print("kkkkkkkkkkkkkkkkkkkkkkkkk")
     data=contact.objects.get(id=myid)
     data.delete()
     return redirect("services")
@@ -93,6 +95,7 @@ def updatenow(request,update):
         mydata.save()
 
       return redirect ("services")
+
 def searchthisdata (request):
     xyz=request.GET['query']
     searchdata=contact.objects.filter(username=xyz) 
@@ -132,6 +135,7 @@ def signup(request):
 
 def logins(request):
     return render(request,"log.html")
+
 def loginup(request):
        if request.method == "POST":
         name = request.POST.get("username")
@@ -146,12 +150,12 @@ def loginup(request):
         
         else:
             messages.warning(request, "PLease Enter vaild Crentationals! ")
-        return render (request,"log.html")
+        return redirect ("services")
             
 
 def logouthere(request):
     logout(request)
-    return redirect("log")
+    return redirect("login")
      
 
 

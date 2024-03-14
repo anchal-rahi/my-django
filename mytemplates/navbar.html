@@ -35,18 +35,27 @@
                 
                   <a class="nav-link" style="margin-left: 60px; margin-right: 30px;   font-style: times new romen; font-weight: 400;"  href="/about">About</a>
                 </li>
-                  <li class="nav-item">
-                    <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;  font-style: times new romen; font-weight: 400;" href="/service">Services</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/signup_page">Signup</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/login">Login</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/contact">ContactUS</a>
-                  </li>
+                
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;  font-style: times new romen; font-weight: 400;" href="/service">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/contact">ContactUS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/logout">Logout</a>
+                </li>
+                <b>{{request.user}}</b>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/signup_page">Signup</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"style="margin-left: 70px;  margin-right: 30px;   font-style: times new romen; font-weight: 400;" href="/login">Login</a>
+                </li>
+                {% endif %}
+
                 </ul>
                 <form class="d-flex"   action ="/search" method="get"  style="margin-left:30px;  font-style: times new romen; font-weight: 400;" role="search">
                   <input class="form-control me-2"  name="query"type="search" placeholder="Search" aria-label="Search">
