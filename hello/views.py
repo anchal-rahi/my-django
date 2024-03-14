@@ -113,18 +113,18 @@ def signup(request):
         email = request.POST.get("email")
         Password = request.POST.get("password")
         FullName = request.POST.get("Fullname")
-        # cpassword = request.POST.get("cpassword")
+        cpassword = request.POST.get("cpassword")
 
-        # if Password == cpassword:
+        if Password != cpassword:
+            messages.warning(request, "password doesn't match")
+            return redirect("signup")
+        
+        else:
+            saveuser = User.objects.create_user(username = username, email = email, password=Password, first_name = FullName)
+            saveuser.save()
 
-        saveuser = User.objects.create_user(username = username, email = email, password=Password, first_name = FullName)
-        saveuser.save()
-
-        messages.success(request, "User Added Sucessfulyy.....!")
-
-
-
-        return redirect("signup")
+            messages.success(request, "User Added Sucessfulyy.....!")
+            return redirect("signup")
         
         # else:
         #     messages.warning(request, "password does not match!")
@@ -147,10 +147,11 @@ def loginup(request):
             lg(request, usercheck)
             
             messages.success(request, "Login Sucessfully done..!")
+            return redirect ("services")
         
         else:
             messages.warning(request, "PLease Enter vaild Crentationals! ")
-        return redirect ("services")
+            return redirect("login")
             
 
 def logouthere(request):
